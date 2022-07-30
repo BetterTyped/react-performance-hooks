@@ -1,10 +1,10 @@
 {
-  "name": "@better-typed/react-window-hooks",
+  "name": "@better-typed/react-performance-hooks",
   "version": "0.8.0",
   "author": "prc5",
   "license": "MIT",
   "description": "React window hooks",
-  "repository": "BetterTyped/react-window-hooks",
+  "repository": "BetterTyped/react-performance-hooks",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",

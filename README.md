@@ -1,10 +1,10 @@
 # React Performance Hooks
 
-[![NPM](https://img.shields.io/npm/v/@better-typed/react-performance-hooks.svg)](https://www.npmjs.com/package/@better-typed/react-performance-hooks)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/@better-typed/react-performance-hooks)
-![npm type definitions](https://img.shields.io/npm/types/@better-typed/react-performance-hooks)
-![NPM](https://img.shields.io/npm/l/@better-typed/react-performance-hooks)
-![npm](https://img.shields.io/npm/dm/@better-typed/react-performance-hooks)
+[![NPM](https://img.shields.io/npm/v/@better-hooks/performance.svg)](https://www.npmjs.com/package/@better-hooks/performance)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@better-hooks/performance)
+![npm type definitions](https://img.shields.io/npm/types/@better-hooks/performance)
+![NPM](https://img.shields.io/npm/l/@better-hooks/performance)
+![npm](https://img.shields.io/npm/dm/@better-hooks/performance)
 ![GitHub stars](https://img.shields.io/github/stars/BetterTyped/react-performance-hooks?style=social)
 
 > Debounce and throttle your functions to gain performance boost!
@@ -20,13 +20,13 @@
 ## Install
 
 ```bash
-npm install --save @better-typed/react-performance-hooks
+npm install --save @better-hooks/performance
 ```
 
 or
 
 ```bash
-yarn add @better-typed/react-performance-hooks
+yarn add @better-hooks/performance
 ```
 
 ## useDebounce
@@ -35,7 +35,7 @@ This hook allows debouncing of the given function.
 
 ```tsx
 import React from "react";
-import { useDebounce } from "@better-typed/react-performance-hooks";
+import { useDebounce } from "@better-hooks/performance";
 
 const MyComponent: React.FC = ({ delay }) => {
   const {debounce, reset, active} = useDebounce(delay)
@@ -67,7 +67,7 @@ This hook allows debouncing of the given function.
 
 ```tsx
 import React from "react";
-import { useThrottle } from "@better-typed/react-performance-hooks";
+import { useThrottle } from "@better-hooks/performance";
 
 const MyComponent: React.FC = ({ delay }) => {
   const {throttle, reset, active} = useThrottle(delay)

@@ -1,5 +1,4 @@
 import { useRef } from "react";
-
 import { useForceUpdate, useWillUnmount } from "@better-typed/react-lifecycle-hooks";
 
 type ThrottleType = ReturnType<typeof setTimeout> | null;
@@ -25,6 +24,16 @@ export const useThrottle = (delay = 200): UseThrottleReturnType => {
   const timer = useRef<ThrottleType>(null);
   const forceUpdate = useForceUpdate();
 
+  const rerenderActive = () => {
+    if (newRun.current) newRun.current = false;
+    if (shouldRerenderActive.current) forceUpdate();
+  };
+
+  const reset = () => {
+    if (timer.current !== null) clearTimeout(timer.current);
+    timer.current = null;
+  };
+
   const throttle: ThrottleFunction = (callback: () => Promise<void> | void, dynamicDelay) => {
     const trigger = () => {
       lastExecution.current = Date.now();
@@ -47,16 +56,6 @@ export const useThrottle = (delay = 200): UseThrottleReturnType => {
         trigger();
       }, time);
     }
-  };
-
-  const rerenderActive = () => {
-    if (newRun.current) newRun.current = false;
-    if (shouldRerenderActive.current) forceUpdate();
-  };
-
-  const reset = () => {
-    if (timer.current !== null) clearTimeout(timer.current);
-    timer.current = null;
   };
 
   useWillUnmount(reset);

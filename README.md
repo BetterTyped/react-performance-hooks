@@ -1,23 +1,42 @@
-# React Performance Hooks
+# 🎊 React Performance Hooks
 
-[![NPM](https://img.shields.io/npm/v/@better-hooks/performance.svg)](https://www.npmjs.com/package/@better-hooks/performance)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/@better-hooks/performance)
-![npm type definitions](https://img.shields.io/npm/types/@better-hooks/performance)
-![NPM](https://img.shields.io/npm/l/@better-hooks/performance)
-![npm](https://img.shields.io/npm/dm/@better-hooks/performance)
-![GitHub stars](https://img.shields.io/github/stars/BetterTyped/react-performance-hooks?style=social)
+<p>
+  <a href="https://bettertyped.com/">
+    <img src="https://custom-icon-badges.demolab.com/static/v1?label=&message=BetterTyped&color=333&logo=BT" />
+  </a>
+  <a href="https://github.com/BetterTyped/react-performance-hooks">
+    <img src="https://custom-icon-badges.demolab.com/github/stars/BetterTyped/react-performance-hooks?logo=star&color=118ab2" />
+  </a>
+  <a href="https://github.com/BetterTyped/react-performance-hooks/blob/main/License.md">
+    <img src="https://custom-icon-badges.demolab.com/github/license/BetterTyped/react-performance-hooks?logo=law&color=yellow" />
+  </a>
+  <a href="https://github.com/semantic-release/semantic-release">
+    <img src="https://custom-icon-badges.demolab.com/badge/semver-commitzen-e10079?logo=semantic-release&color=e76f51" />
+  </a>
+  <a href="https://github.com/BetterTyped/react-performance-hooks">
+    <img src="https://custom-icon-badges.demolab.com/badge/typescript-%23007ACC.svg?logo=typescript&logoColor=white" />
+  </a>
+  <a href="https://www.npmjs.com/package/@better-hooks/performance">
+    <img src="https://custom-icon-badges.demolab.com/bundlephobia/min/@better-hooks/performance?color=64BC4B&logo=package" />
+  </a>
+  <a href="https://www.npmjs.com/package/@better-hooks/performance">
+    <img src="https://custom-icon-badges.demolab.com/npm/v/@better-hooks/performance.svg?logo=npm&color=E10098" />
+  </a>
+</p>
 
-> Debounce and throttle your functions to gain performance boost!
+## About
 
-- [Better Typed](https://github.com/BetterTyped)
+Debounce and throttle your functions to gain performance boost!
 
-## Features
+## Key Features
 
-- :rocket: Simple, fast and light
-- :factory: Debounce and Throttle
-- 🪗 Lifecycle events handling
+🔮 **Simple usage**
 
-## Install
+🚀 **Fast and light**
+
+✨ **Debounce and Throttle**
+
+## Installation
 
 ```bash
 npm install --save @better-hooks/performance
@@ -29,7 +48,11 @@ or
 yarn add @better-hooks/performance
 ```
 
-## useDebounce
+---
+
+## Examples
+
+#### useDebounce
 
 This hook allows debouncing of the given function.
 
@@ -61,7 +84,7 @@ const MyComponent: React.FC = ({ delay }) => {
 
 ```
 
-## useThrottle
+#### useThrottle
 
 This hook allows debouncing of the given function.
 

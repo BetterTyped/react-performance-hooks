@@ -1,23 +1,15 @@
-import { useRef } from "react";
-import { useWillUnmount, useForceUpdate } from "@better-typed/react-lifecycle-hooks";
+import { useEffect, useRef } from "react";
 
-type DebounceType = ReturnType<typeof setTimeout> | null;
-export type DebounceFunctionType = (
-  callback: () => void | Promise<void>,
-  dynamicDelay?: number,
-) => void;
-export type UseDebounceReturnType = {
-  debounce: DebounceFunctionType;
-  reset: VoidFunction;
-  active: boolean;
-};
+import {
+  DebounceType,
+  UseDebounceProps,
+  DebounceFunctionType,
+  UseDebounceReturnType,
+} from "./use-debounce.types";
+import { useForceUpdate } from "hooks/use-force-update";
 
-/**
- * @param delay
- * @internal
- * @returns
- */
-export const useDebounce = (delay = 400): UseDebounceReturnType => {
+export const useDebounce = (props?: UseDebounceProps): UseDebounceReturnType => {
+  const { delay = 400 } = props || {};
   const shouldRerenderActive = useRef(false);
   const timer = useRef<DebounceType>(null);
   const forceUpdate = useForceUpdate();
@@ -42,7 +34,9 @@ export const useDebounce = (delay = 400): UseDebounceReturnType => {
     rerenderActive();
   };
 
-  useWillUnmount(reset);
+  useEffect(() => {
+    return reset;
+  }, []);
 
   return {
     get active() {

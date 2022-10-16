@@ -1,23 +1,15 @@
-import { useRef } from "react";
-import { useForceUpdate, useWillUnmount } from "@better-typed/react-lifecycle-hooks";
+import { useEffect, useRef } from "react";
 
-type ThrottleType = ReturnType<typeof setTimeout> | null;
-export type ThrottleFunctionType = (
-  callback: () => void | Promise<void>,
-  dynamicDelay?: number,
-) => void;
-export type UseThrottleReturnType = {
-  throttle: ThrottleFunctionType;
-  reset: VoidFunction;
-  active: boolean;
-};
+import {
+  ThrottleType,
+  UseThrottleProps,
+  ThrottleFunctionType,
+  UseThrottleReturnType,
+} from "./use-throttle.types";
+import { useForceUpdate } from "hooks/use-force-update";
 
-export type ThrottleFunction = (
-  callback: () => void | Promise<void>,
-  dynamicDelay?: number,
-) => void;
-
-export const useThrottle = (delay = 200): UseThrottleReturnType => {
+export const useThrottle = (props?: UseThrottleProps): UseThrottleReturnType => {
+  const { executionInterval = 200, executionTimeout = 200 } = props || {};
   const lastExecution = useRef<number>(0);
   const newRun = useRef<boolean>(true);
   const shouldRerenderActive = useRef(false);
@@ -34,31 +26,34 @@ export const useThrottle = (delay = 200): UseThrottleReturnType => {
     timer.current = null;
   };
 
-  const throttle: ThrottleFunction = (callback: () => Promise<void> | void, dynamicDelay) => {
+  const throttle: ThrottleFunctionType = (callback, dynamicProps) => {
     const trigger = () => {
       lastExecution.current = Date.now();
       callback();
       rerenderActive();
     };
 
-    const time = dynamicDelay ?? delay;
-    const shouldCallImmediately = Date.now() >= lastExecution.current + time;
+    const intervalTime = dynamicProps?.executionInterval ?? executionInterval;
+    const timeoutTime = dynamicProps?.executionTimeout ?? executionTimeout;
+    const shouldCallImmediately = Date.now() >= lastExecution.current + intervalTime;
 
     if (newRun.current) rerenderActive();
     if (timer.current) reset();
 
     if (shouldCallImmediately) {
       trigger();
-    } else {
+    } else if (timeoutTime) {
       timer.current = setTimeout(() => {
         timer.current = null;
         newRun.current = true;
         trigger();
-      }, time);
+      }, timeoutTime);
     }
   };
 
-  useWillUnmount(reset);
+  useEffect(() => {
+    return reset;
+  }, []);
 
   return {
     get active() {

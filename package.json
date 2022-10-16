@@ -114,20 +114,14 @@
   "keywords": [
     "react",
     "hooks",
-    "lifecycle",
-    "use",
-    "did",
-    "mount",
-    "update",
-    "unmount",
-    "render",
-    "hook",
-    "useDidMount",
-    "useDidUnmount",
-    "useDidRender",
-    "useWillUnmount"
-  ],
-  "dependencies": {
-    "@better-typed/react-lifecycle-hooks": "^1.0.5"
-  }
+    "performance",
+    "throttle",
+    "debounce",
+    "useDebounce",
+    "useDebounceState",
+    "useDebounceEffect",
+    "useThrottle",
+    "useThrottleState",
+    "useThrottleEffect"
+  ]
 }

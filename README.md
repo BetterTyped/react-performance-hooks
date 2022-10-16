@@ -26,9 +26,10 @@
     <img src="https://custom-icon-badges.demolab.com/npm/dm/@better-hooks/performance?logoColor=fff&logo=trending-up" />
   </a>
 </p>
+
 ## About
 
-Debounce and throttle your functions to gain performance boost!
+Debounce and throttle your functions, state and effects to gain performance boost!
 
 ## Key Features
 
@@ -37,6 +38,10 @@ Debounce and throttle your functions to gain performance boost!
 🚀 **Fast and light**
 
 ✨ **Debounce and Throttle**
+
+🎊 **Lifecycle debounce and throttle**
+
+📡 **State debounce and throttle**
 
 ## Installation
 
@@ -56,14 +61,15 @@ yarn add @better-hooks/performance
 
 #### useDebounce
 
-This hook allows debouncing of the given function.
+This hook allows debouncing of the given function. Function will be called after some amount of time
+from the last execution. We can adjust debounce time with additional props.
 
 ```tsx
 import React from "react";
 import { useDebounce } from "@better-hooks/performance";
 
-const MyComponent: React.FC = ({ delay }) => {
-  const {debounce, reset, active} = useDebounce(delay)
+const MyComponent: React.FC = () => {
+  const {debounce, reset, active} = useDebounce({ delay: 600 })
 
   // Standard usage
   const onTyping = () => {
@@ -76,7 +82,7 @@ const MyComponent: React.FC = ({ delay }) => {
   const onTypingDynamic = (value: string, customDelay: number) => {
     debounce(() => {
       // debounced logic
-    }, customDelay)
+    }, { delay: customDelay })
   }
 
   return (
@@ -85,6 +91,57 @@ const MyComponent: React.FC = ({ delay }) => {
 }
 
 ```
+
+---
+
+#### useDebounceState
+
+This hook allows debouncing of state. Value will be saved after some amount of time from the last
+execution of set function. We can adjust debounce time with additional props.
+
+```tsx
+import React from "react";
+import { useWindowEvent } from "@better-hooks/window";
+import { useDebounceState } from "@better-hooks/performance";
+
+const MyComponent: React.FC = () => {
+  const [value, setValue] = useDebounceState("20px")
+
+  useWindowEvent("scroll", (e) => {
+    setValue(e.scrollY + "px");
+  })
+
+  return (
+    // ...
+  )
+}
+
+```
+
+---
+
+#### useDebounceEffect
+
+This hook allows debouncing of lifecycle effect.
+
+```tsx
+import React from "react";
+import { useDebounceEffect } from "@better-hooks/performance";
+
+const MyComponent: React.FC = (props) => {
+
+  useDebounceEffect(() => {
+    // Do something
+  }, { delay: 200 }, [props])
+
+  return (
+    // ...
+  )
+}
+
+```
+
+---
 
 #### useThrottle
 
@@ -110,6 +167,77 @@ const MyComponent: React.FC = ({ delay }) => {
       // throttle logic
     }, customDelay)
   }
+
+  return (
+    // ...
+  )
+}
+
+```
+
+---
+
+#### useThrottleState
+
+This hook allows throttling of state. We can adjust execution interval time and execution timeout
+time with additional props.
+
+```tsx
+import React from "react";
+import { useWindowEvent } from "@better-hooks/window";
+import { useThrottleState } from "@better-hooks/performance";
+
+const MyComponent: React.FC = () => {
+  const [value, setValue] =  useThrottleState("20px")
+
+  useWindowEvent("scroll", (e) => {
+    setValue(e.scrollY + "px");
+  })
+
+  return (
+    // ...
+  )
+}
+
+```
+
+```tsx
+import React from "react";
+import { useWindowEvent } from "@better-hooks/window";
+import { useThrottleState } from "@better-hooks/performance";
+
+const MyComponent: React.FC = () => {
+  const [value, setValue] =  useThrottleState("20px", {
+    executionInterval: 200, // We will save values at least once per 200ms
+    executionTimeout: 400 // Last set state action will get triggered after 400ms, we can also disable it
+  })
+
+  useWindowEvent("scroll", (e) => {
+    setValue(e.scrollY + "px");
+  })
+
+  return (
+    // ...
+  )
+}
+
+```
+
+---
+
+#### useThrottleEffect
+
+This hook allows debouncing of lifecycle effect.
+
+```tsx
+import React from "react";
+import { useThrottleEffect } from "@better-hooks/performance";
+
+const MyComponent: React.FC = (props) => {
+
+   useThrottleEffect(() => {
+    // Do something
+  }, { executionInterval: 200, executionTimeout: false }, [props])
 
   return (
     // ...

@@ -17,13 +17,15 @@
     <img src="https://custom-icon-badges.demolab.com/badge/typescript-%23007ACC.svg?logo=typescript&logoColor=white" />
   </a>
   <a href="https://www.npmjs.com/package/@better-hooks/performance">
-    <img src="https://custom-icon-badges.demolab.com/bundlephobia/min/@better-hooks/performance?color=64BC4B&logo=package" />
-  </a>
-  <a href="https://www.npmjs.com/package/@better-hooks/performance">
     <img src="https://custom-icon-badges.demolab.com/npm/v/@better-hooks/performance.svg?logo=npm&color=E10098" />
   </a>
+  <a href="https://www.npmjs.com/package/@better-hooks/performance">
+    <img src="https://custom-icon-badges.demolab.com/bundlephobia/minzip/@better-hooks/performance?color=blueviolet&logo=package" />
+  </a>
+  <a href="https://www.npmjs.com/package/@better-hooks/performance">
+    <img src="https://custom-icon-badges.demolab.com/npm/dm/@better-hooks/performance?logoColor=fff&logo=trending-up" />
+  </a>
 </p>
-
 ## About
 
 Debounce and throttle your functions to gain performance boost!

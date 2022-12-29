@@ -208,8 +208,8 @@ import { useThrottleState } from "@better-hooks/performance";
 
 const MyComponent: React.FC = () => {
   const [value, setValue] =  useThrottleState("20px", {
-    executionInterval: 200, // We will save values at least once per 200ms
-    executionTimeout: 400 // Last set state action will get triggered after 400ms, we can also disable it
+    interval: 200, // We will save values at least once per 200ms
+    timeout: 400 // Last set state action will get triggered after 400ms, we can also disable it
   })
 
   useWindowEvent("scroll", (e) => {
@@ -237,7 +237,7 @@ const MyComponent: React.FC = (props) => {
 
    useThrottleEffect(() => {
     // Do something
-  }, { executionInterval: 200, executionTimeout: false }, [props])
+  }, { interval: 200, timeout: false }, [props])
 
   return (
     // ...

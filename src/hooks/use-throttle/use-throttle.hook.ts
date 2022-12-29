@@ -9,7 +9,7 @@ import {
 import { useForceUpdate } from "hooks/use-force-update";
 
 export const useThrottle = (props?: UseThrottleProps): UseThrottleReturnType => {
-  const { executionInterval = 200, executionTimeout = 200 } = props || {};
+  const { interval = 200, timeout = 200 } = props || {};
   const lastExecution = useRef<number>(0);
   const newRun = useRef<boolean>(true);
   const shouldRerenderActive = useRef(false);
@@ -33,8 +33,8 @@ export const useThrottle = (props?: UseThrottleProps): UseThrottleReturnType => 
       rerenderActive();
     };
 
-    const intervalTime = dynamicProps?.executionInterval ?? executionInterval;
-    const timeoutTime = dynamicProps?.executionTimeout ?? executionTimeout;
+    const intervalTime = dynamicProps?.interval ?? interval;
+    const timeoutTime = dynamicProps?.timeout ?? timeout;
     const shouldCallImmediately = Date.now() >= lastExecution.current + intervalTime;
 
     if (newRun.current) rerenderActive();

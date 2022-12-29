@@ -15,9 +15,9 @@ export type UseThrottleProps = {
   /**
    * Execution interval time for triggering callback
    */
-  executionInterval?: number;
+  interval?: number;
   /**
    * Callback timeout when throttling stops triggering
    */
-  executionTimeout?: number | false;
+  timeout?: number | false;
 };

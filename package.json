@@ -24,8 +24,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "postinstall": "yarn husky install",
-    "prepare": "install-peers",
+    "prepare": "install-peers && yarn husky install",
     "lint": "eslint . --ext .js,.jsx,.tsx,.ts --fix",
     "test": "jest",
     "release": "yarn semantic-release"

@@ -1,11 +1,5 @@
 name: Workflow
-on:
-  push:
-    paths:
-      - src/**
-      - scripts/**
-    branches:
-      - main
+on: push
 
 concurrency:
   group:

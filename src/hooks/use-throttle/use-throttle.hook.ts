@@ -1,12 +1,7 @@
 import { useEffect, useRef } from "react";
+import { useForceUpdate } from "@better-hooks/lifecycle";
 
-import {
-  ThrottleType,
-  UseThrottleProps,
-  ThrottleFunctionType,
-  UseThrottleReturnType,
-} from "./use-throttle.types";
-import { useForceUpdate } from "hooks/use-force-update";
+import { ThrottleType, UseThrottleProps, ThrottleFunctionType, UseThrottleReturnType } from "hooks";
 
 export const useThrottle = (props?: UseThrottleProps): UseThrottleReturnType => {
   const { interval = 200, timeout = 200 } = props || {};

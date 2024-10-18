@@ -122,5 +122,8 @@
     "useThrottle",
     "useThrottleState",
     "useThrottleEffect"
-  ]
+  ],
+  "dependencies": {
+    "@better-hooks/lifecycle": "^1.1.2"
+  }
 }

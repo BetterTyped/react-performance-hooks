@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 
-import { UseThrottleProps } from "hooks/use-throttle/use-throttle.types";
-import { useThrottle } from "hooks/use-throttle/use-throttle.hook";
+import { useThrottle, UseThrottleProps } from "hooks";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useThrottleEffect = (
   callback: () => void,
   props: UseThrottleProps,

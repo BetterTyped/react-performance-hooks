@@ -1,12 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { useForceUpdate } from "@better-hooks/lifecycle";
 
-import {
-  DebounceType,
-  UseDebounceProps,
-  DebounceFunctionType,
-  UseDebounceReturnType,
-} from "./use-debounce.types";
-import { useForceUpdate } from "hooks/use-force-update";
+import { DebounceType, UseDebounceProps, DebounceFunctionType, UseDebounceReturnType } from "hooks";
 
 export const useDebounce = (props?: UseDebounceProps): UseDebounceReturnType => {
   const { delay = 400 } = props || {};
@@ -14,25 +9,28 @@ export const useDebounce = (props?: UseDebounceProps): UseDebounceReturnType => 
   const timer = useRef<DebounceType>(null);
   const forceUpdate = useForceUpdate();
 
-  const rerenderActive = () => {
+  const rerenderActive = useCallback(() => {
     if (shouldRerenderActive.current) forceUpdate();
-  };
+  }, [forceUpdate]);
 
   const reset = () => {
     if (timer.current !== null) clearTimeout(timer.current);
     timer.current = null;
   };
 
-  const debounce: DebounceFunctionType = (callback, dynamicDelay) => {
-    const time = dynamicDelay ?? delay;
-    reset();
-    timer.current = setTimeout(() => {
-      timer.current = null;
-      callback();
+  const debounce: DebounceFunctionType = useCallback(
+    (callback, dynamicDelay) => {
+      const time = dynamicDelay ?? delay;
+      reset();
+      timer.current = setTimeout(() => {
+        timer.current = null;
+        callback();
+        rerenderActive();
+      }, time);
       rerenderActive();
-    }, time);
-    rerenderActive();
-  };
+    },
+    [delay, rerenderActive],
+  );
 
   useEffect(() => {
     return reset;

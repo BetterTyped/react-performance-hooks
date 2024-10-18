@@ -59,6 +59,28 @@ yarn add @better-hooks/performance
 
 ## Examples
 
+#### useDeepEffect
+
+This hook deeply compares the dependencies optimizing rerendering effects
+
+```tsx
+import React from "react";
+import { useDebounce } from "@better-hooks/performance";
+
+const MyComponent: React.FC = () => {
+  const {debounce, reset, active} = useDeepEffect(() => {
+    // do something
+  }, [{a: 123}]) // <--- we will check if the deps are equal between rerenders
+
+  return (
+    // ...
+  )
+}
+
+```
+
+---
+
 #### useDebounce
 
 This hook allows debouncing of the given function. Function will be called after some amount of time

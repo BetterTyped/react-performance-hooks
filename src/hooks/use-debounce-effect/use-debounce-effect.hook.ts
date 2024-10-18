@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 
-import { useDebounce } from "hooks/use-debounce/use-debounce.hook";
-import { UseDebounceProps } from "hooks/use-debounce/use-debounce.types";
+import { useDebounce, UseDebounceProps } from "hooks";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useDebounceEffect = (
   callback: () => void,
   props: UseDebounceProps,

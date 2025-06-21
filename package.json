@@ -124,6 +124,6 @@
     "useThrottleEffect"
   ],
   "dependencies": {
-    "@better-hooks/lifecycle": "^1.1.2"
+    "@better-hooks/lifecycle": "^2.0.0"
   }
 }
